@@ -1,6 +1,6 @@
 .HeaderContainer {
   background-color: #131313;
-  opacity: 80%;
+  opacity: 0.9;
   height: 10vh;
   display: flex;
   flex-direction: row;

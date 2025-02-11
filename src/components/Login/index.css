@@ -21,10 +21,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* background-color: green;
+  opacity: 0.5; */
 }
 .FormContainer {
   background-color: #131313;
-  opacity: 80%;
+  opacity: 0.9;
   width: 456px;
   height: 440px;
   display: flex;

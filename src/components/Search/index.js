@@ -20,7 +20,7 @@ const Search = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const [isResponse, setResponse] = useState({
     state: apiStateContent.initial,
-    data: 'initial',
+    data: null,
   })
   const [currentPage, setCurrentPage] = useState(1)
   const [postPerPage] = useState(15)
@@ -61,10 +61,8 @@ const Search = () => {
         },
       }
       const response = await fetch(url, options)
-      // console.log(response)
       if (response.ok) {
         const data = await response.json()
-        // console.log(data)
         const updatedDetails = data.results.map(each => ({
           id: each.id,
           title: each.title,
@@ -79,10 +77,6 @@ const Search = () => {
       setResponse({state: apiStateContent.success})
       setSearchInput('{Nothing}')
     }
-  }
-
-  const onClickedtryAgainSearch = () => {
-    onClickIcon()
   }
 
   const renderInitial = () => <></>
@@ -108,7 +102,7 @@ const Search = () => {
 
   const renderSuccess = () => (
     <div className="SearchBodyContainer">
-      {currentPosts === undefined ? (
+      {isResponse.data === undefined || isResponse.data.length === 0 ? (
         <div data-testid="searchButton">
           <img
             src="https://res.cloudinary.com/dfgdjrtc1/image/upload/v1735016398/Group_7394_kxn0ij.png"
@@ -134,7 +128,7 @@ const Search = () => {
           ))}
         </ul>
       )}
-      {currentPosts === undefined ? null : (
+      {isResponse.data === undefined || isResponse.data.length === 0 ? null : (
         <Pagination
           totalposts={totalpostsLength()}
           postPerPage={postPerPage}
@@ -157,7 +151,7 @@ const Search = () => {
         <button
           type="button"
           className="tryButtonFailure"
-          onClick={onClickedtryAgainSearch}
+          onClick={onClickIcon}
         >
           Try Again
         </button>
